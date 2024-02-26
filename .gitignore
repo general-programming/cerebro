@@ -5,6 +5,9 @@
 !.gitignore
 !.eslintrc.json
 
+# excluding .github
+!.github/
+
 # Ignore Play! working directory #
 db
 eclipse

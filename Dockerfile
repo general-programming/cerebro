@@ -10,14 +10,14 @@ FROM eclipse-temurin:11
 
 WORKDIR /app
 
-COPY --from=builder /build/target/universal/cerebro-0.9.4.tgz .
+COPY --from=builder /build/target/universal/*.tgz .
 
-RUN tar xfv cerebro-0.9.4.tgz --strip-components=1 && \
-    rm cerebro-0.9.4.tgz && \
+RUN tar xfv *.tgz --strip-components=1 && \
+    rm *.tgz && \
     addgroup -gid 1000 cerebro \
     && adduser -q --system --no-create-home --disabled-login -gid 1000 -uid 1000 cerebro \
     && chown -R cerebro:cerebro /app
 
 USER cerebro
 
-ENTRYPOINT [ "/app/bin/cerebro" ]
+CMD [ "/app/bin/cerebro", "-v" ]
